@@ -1,0 +1,64 @@
+{%extends "app1/base.html"%}
+{% block title%}<title>login page</title>{% endblock%}
+
+{% block body%}
+<style>
+    #p1{
+        display:inline-block;
+    }
+    #button1{
+        display:inline-block;
+        position:absolute;
+        right:2px;
+
+    }
+    h1{
+        color:red;
+    }
+</style>
+{%for i in messages%}
+<div class = "alert alert-danger " id = "alert1">
+    <p class = "text-white" id = "p1">{{i}}</p>
+    <button class = "btn  text-dark" id = "button1" onclick = "func1()">X</button>
+</div>
+{% endfor%}
+<h1 class = "text-center my-3">Login Page.</h1>
+<div class = "container">
+    <form action = "/accounts/login/" method = "POST" novalidate class = "shadow p-5 col-sm-8 mx-auto">
+        {%csrf_token%}
+        <div class = "row" >
+            <div class="form-group col-sm-8 mx-auto my-1">
+                <label for="inputUsername">Username</label>
+                <input type="text" class="form-control " id="inputUsername" name = "username">
+            </div><br>
+        </div>
+        <div class = "row">
+            <div class="form-group2 col-sm-8 mx-auto my-1">
+                <label for="inputpassword1">Password</label>
+                <input type="password" class="form-control" id="inputpassword1" name = "password">
+          </div>
+        </div>
+        <button type = "submit" class = "btn btn-danger my-3" style = "margin-left: 130px;">Login</button>
+        <div class = "fw-bold" style = "margin-left:300px;" >
+            <small><a class = "text-warning" href = "/register/">
+                Create Account</a></small><br>
+        </div>
+        
+          
+    </form>
+</div>
+
+    {% for i in data %}
+    <div class="row">
+        {{ i }}
+    </div>
+{% endfor %}
+<script>
+    function func1(){
+        var x = document.getElementById("alert1");{
+            x.style.display = "none";
+        }
+      
+    }
+</script>
+{%endblock%}

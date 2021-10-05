@@ -1,0 +1,53 @@
+{% extends 'app1/base.html' %}
+{% block title %}<title>Post Blog</title>{% endblock title %}
+{% block body %}
+<style>
+#date1{
+    width:250px;
+}
+#form-label{
+    font-size:20px;
+}
+#p1{
+  display: inline-block;
+}
+#button1{
+  display:inline-block;
+  position:absolute;
+  right:2px;
+}
+.container .text-central {
+  font-style:normal;
+}
+</style>
+{%for i in messages%}
+<div class = "alert alert-danger " id = "alert1">
+    <p class = "text-white" id = "p1">{{i}}</p>
+    <button class = "btn  text-dark" id = "button1" onclick = "func1()">X</button>
+</div>
+{% endfor%}
+<div class = "container">
+  <h1 class = "text-central my-3 text-danger">Post Blog:</h1>
+<form action = "/post_blog/" method = "POST">
+{% csrf_token %}
+  <div class="mb-3">
+    <label for="title1" class="form-label text-success h4">Title:</label>
+    <input type="text" class="form-control rounded" id="title1" aria-describedby="emailHelp"  name = "title1">
+  </div>
+  <div class="mb-3">
+    <label for="description1" class="form-labe text-success h4">Description:</label>
+    <textarea type="text" class="form-control rouned" id="description1"  name = "description1" rows = "4"></textarea>
+  </div>
+  <button type="submit" class="btn btn-danger">Post</button>
+</form>
+</div>
+<script>
+    function func1(){
+        var x = document.getElementById("alert1");{
+            x.style.display = "none";
+        }
+      
+    }
+</script>
+
+{% endblock body %}

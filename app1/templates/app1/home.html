@@ -1,0 +1,58 @@
+{%extends "app1/base.html"%}
+{% block title%}<title>home page</title>{% endblock%}
+{% block body%}
+<style>
+    #homeimage1{
+        width:100%;
+        height:500px;
+
+    }
+    #p1{
+        display:inline-block;
+    }
+    #button1{
+        display:inline-block;
+        position:absolute;
+        right:2px;
+
+    }
+</style>
+{% load static%}
+{%for i in messages%}
+<div class = "alert alert-danger " id = "alert1">
+    <p class = "text-white" id = "p1">{{i}}</p>
+    <button class = "btn  text-dark" id = "button1" onclick = "func1()">X</button>
+</div>
+{% endfor%}
+<div class = "container my-3">
+    <img id = "homeimage1" src = "{%static 'app1/image3.png'%}">
+    <div class="row mb-2 my-3">
+    {%for i in blogs%}
+    {% if i.id != 6 %}
+        <div class="col-md-6">
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary">World</strong>
+              <h3 class="mb-0">{{i.title}}</h3>
+              <div class="mb-1 text-muted">{{i.date}}</div>
+              <p class="card-text mb-auto">{{i.dsc}}</p>
+            
+              <b>Posted by:-> {{i.user_id.username}}</b>
+              <a href="/blog_detail/{{i.id}}" class="stretched-link btn btn-danger my-3">Continue reading</a>
+            </div>
+          </div>
+        </div>
+    {% endif %}
+    {%endfor%}
+    </div>
+</div>
+
+<script>
+  function func1(){
+      var x = document.getElementById("alert1");{
+          x.style.display = "none";
+      }
+    
+  }
+</script>
+{%endblock%}
